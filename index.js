@@ -41,7 +41,11 @@ exports.onRendererWindow = (window) => {
   const path = window.require("path")
   const configPath  = path.join(os.homedir(),".hyper_plugins","hyper-snippet.js")
   if(!fs.existsSync(configPath)){
-    fs.writeFileSync(configPath,"module.exports = {}")
+    fs.writeFileSync(configPath,`module.exports = {
+  open:{
+    "hs":"open ~/.hyper_plugins/hyper-snippet.js"
+  }
+}`)
     config = {}
   }
   else {
