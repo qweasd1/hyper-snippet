@@ -1,0 +1,17 @@
+{
+  "name": "hyper-snippet",
+  "version": "1.0.0",
+  "dependencies": {
+    "node-pty": "^0.9.0"
+  },
+  "keywords": [
+    "hyper",
+    "hyper.app",
+    "hyperterm",
+    "hyper-plugin",
+    "hyperterm-plugin",
+    "hyper-extension",
+    "snippet",
+    "hyper-snippet"
+  ]
+}
