@@ -92,6 +92,9 @@ function findPreviousBreakPoint(chars, startCurosr) {
 
 const PTY_SKIP_CHARS = new Set(["\r"])
 
+
+
+
 class TerminalSimulator {
   constructor() {
     this.cursor = 0

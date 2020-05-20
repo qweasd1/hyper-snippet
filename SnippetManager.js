@@ -50,6 +50,55 @@ class SnippetManager {
 }
 
 
+function common(strings) {
+  var first = strings[0] || '';
+  var commonLength = first.length
+
+  for (var i = 1; i < strings.length; ++i) {
+    for (var j = 0; j < commonLength; ++j) {
+      if (strings[i].charAt(j) !== first.charAt(j)) {
+        commonLength = j
+        break
+      }
+    }
+  }
+
+  return first.slice(0, commonLength)
+}
+
+
+class PrefixMatcher {
+  constructor(config) {
+    this.prefixIndex = {}
+    Object.keys(config).forEach((prefix)=>{
+      if(prefix.startsWith("$")){
+        const subConfigs = config[prefix]
+        if(prefix === "$subcmds"){
+          for(let key of Object.keys(subConfigs)){
+            this.prefixIndex[key] = new PrefixMatcher(subConfigs[key])
+          }
+        }
+      }
+      else {
+        this.prefixIndex[prefix] = config[prefix]
+      }
+
+    })
+  }
+
+  matchPrefix(text){
+    const candidates = Object.keys(this.prefixIndex).filter(x=>x.startsWith(text))
+    const commonPrefix = common(candidates)
+    return {
+      candidates,
+      commonPrefix
+    }
+  }
+
+
+}
+
+
 module.exports = {
   SnippetManager
 }
